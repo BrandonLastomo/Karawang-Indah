@@ -1,7 +1,7 @@
  <!-- Navigation-->
  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#page-top"><span class="text-waring">KarawangKuy!</span></a>
+                <a class="navbar-brand" href="<?php echo $page !='home' ? './':''  ?>"><span class="text-waring">KarawangKuy!</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -17,6 +17,7 @@
                           <li class="nav-item"><a class="nav-link" href="logout.php"><i class="fa fa-sign-out-alt"></i></a></li>
                         <?php else: ?>
                           <li class="nav-item"><a class="nav-link" href="javascript:void(0)" id="login_btn">Login</a></li>
+                          <li class="nav-item"><a class="nav-link" href="javascript:void(0)" id="register_btn">Register</a></li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -26,6 +27,9 @@
   $(function(){
     $('#login_btn').click(function(){
       uni_modal("","login.php","large")
+    })
+    $('#register_btn').click(function(){
+      uni_modal("","register.php","large")
     })
     $('#navbarResponsive').on('show.bs.collapse', function () {
         $('#mainNav').addClass('navbar-shrink')

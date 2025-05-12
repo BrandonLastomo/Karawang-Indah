@@ -3,7 +3,7 @@
 <?php require_once('config.php'); ?>
  <?php require_once('inc/header.php') ?>
   <body class="hold-transition layout-top-nav" >
-     <?php $page = isset($_GET['page']) ? $_GET['page'] : 'portal';  ?>
+     <?php $page = isset($_GET['page']) ? $_GET['page'] : 'portal';  ?> 
      <?php require_once('inc/topBarNav.php') ?>
      <?php 
         if(!file_exists($page.".php") && !is_dir($page)){
