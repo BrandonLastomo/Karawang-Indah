@@ -10,7 +10,7 @@
 <!-- Masthead-->
 <header class="masthead">
 	<div class="container">
-		<div class="masthead-subheading">Selamat datang di website KarawangKuy!</div>
+		<div class="masthead-subheading">Selamat datang di website Karawang Indah!</div>
 		<div class="masthead-heading text-uppercase">Lihat Paket Wisata Kami!</div>
 		<a class="btn btn-primary btn-xl text-uppercase" href="#home">Lihat Tempat</a>
 	</div>

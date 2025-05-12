@@ -1,7 +1,7 @@
  <!-- Navigation-->
  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="<?php echo $page !='home' ? './':''  ?>"><span class="text-waring">KarawangKuy!</span></a>
+                <a class="navbar-brand" href="<?php echo $page !='home' ? './':''  ?>"><span class="text-waring">Karawang Indah</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>

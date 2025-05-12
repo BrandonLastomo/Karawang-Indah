@@ -132,8 +132,8 @@ CREATE TABLE `system_info` (
 --
 
 INSERT INTO `system_info` (`id`, `meta_field`, `meta_value`) VALUES
-(1, 'name', 'KarawangKuy!'),
-(6, 'short_name', 'KarawangKuy!'),
+(1, 'name', 'KarawangIndah'),
+(6, 'short_name', 'KarawangIndah'),
 (11, 'logo', 'uploads/1746460380_tugu-padi-icon-perkotaan-karawang_169.jpeg'),
 (13, 'user_avatar', 'uploads/user_avatar.jpg'),
 (14, 'cover', 'uploads/1746460380_tugu-padi-icon-perkotaan-karawang_169.jpeg');
