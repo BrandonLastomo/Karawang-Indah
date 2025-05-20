@@ -33,6 +33,7 @@
             </div>
         </form>
 </div>
+
 <script>
     $(function(){
         $('#registration').submit(function(e){

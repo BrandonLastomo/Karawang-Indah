@@ -55,11 +55,24 @@
 					<h5 class="card-title truncate-1 w-100"><?php echo $row['title'] ?></h5><br>
 					<div class=" w-100 d-flex justify-content-start">
 						<div class="stars stars-small">
-								<input disabled class="star star-5" id="star-5" type="radio" name="star" <?php echo $rate == 5 ? "checked" : '' ?>/> <label class="star star-5" for="star-5"></label> 
-								<input disabled class="star star-4" id="star-4" type="radio" name="star" <?php echo $rate == 4 ? "checked" : '' ?>/> <label class="star star-4" for="star-4"></label> 
-								<input disabled class="star star-3" id="star-3" type="radio" name="star" <?php echo $rate == 3 ? "checked" : '' ?>/> <label class="star star-3" for="star-3"></label> 
-								<input disabled class="star star-2" id="star-2" type="radio" name="star" <?php echo $rate == 2 ? "checked" : '' ?>/> <label class="star star-2" for="star-2"></label> 
-								<input disabled class="star star-1" id="star-1" type="radio" name="star" <?php echo $rate == 1 ? "checked" : '' ?>/> <label class="star star-1" for="star-1"></label> 
+							<form class="insert-rate" data-id="<?php echo $row['id'] ?>">
+								<input class="star star-5" id="star5_<?php echo $row['id'] ?>" type="radio" name="rate" value="5" <?php echo $rate == 5 ? "checked" : '' ?> />
+								<label class="star star-5" for="star5_<?php echo $row['id'] ?>"></label>
+								
+								<input class="star star-4" id="star4_<?php echo $row['id'] ?>" type="radio" name="rate" value="4" <?php echo $rate == 4 ? "checked" : '' ?> />
+								<label class="star star-4" for="star4_<?php echo $row['id'] ?>"></label>
+								
+								<input class="star star-3" id="star3_<?php echo $row['id'] ?>" type="radio" name="rate" value="3" <?php echo $rate == 3 ? "checked" : '' ?> />
+								<label class="star star-3" for="star3_<?php echo $row['id'] ?>"></label>
+								
+								<input class="star star-2" id="star2_<?php echo $row['id'] ?>" type="radio" name="rate" value="2" <?php echo $rate == 2 ? "checked" : '' ?> />
+								<label class="star star-2" for="star2_<?php echo $row['id'] ?>"></label>
+								
+								<input class="star star-1" id="star1_<?php echo $row['id'] ?>" type="radio" name="rate" value="1" <?php echo $rate == 1 ? "checked" : '' ?> />
+								<label class="star star-1" for="star1_<?php echo $row['id'] ?>"></label>
+
+								<input type="hidden" name="package_id" value="<?php echo $row['id'] ?>">
+							</form>
 						</div>
                     </div>
     				<p class="card-text truncate"><?php echo $row['description'] ?></p>
@@ -127,7 +140,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Send Message</button></div>
+			<div class="text-center">
+				<button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Send Message</button>
+			</div>
 		</form>
 	</div>
 </section>
@@ -157,5 +172,44 @@ $(function(){
 			}
 		})
 	})
+	$(function(){
+		$('.insert-rate input[type=radio][name=rate]').change(function(){
+			let form = $(this).closest('form');
+			start_loader();
+
+			if($('.err-msg').length > 0)
+			$('.err-msg').remove();
+
+			$.ajax({
+			url: _base_url_+"classes/Master.php?f=rate_review",
+			method: "POST",
+			data: form.serialize(),
+			dataType: "json",
+			error: err => {
+				console.log(err);
+				alert_toast("An error occurred", 'error');
+				end_loader();
+			},
+			success: function(resp){
+				if(typeof resp == 'object' && resp.status == 'success'){
+				alert_toast("Rate submitted", 'success');
+				setTimeout(function(){
+					location.reload();
+				}, 1000);
+				}else if(resp.status == 'failed' && !!resp.msg){
+				var _err_el = $('<div>')
+					.addClass("alert alert-danger err-msg")
+					.text(resp.msg);
+				form.prepend(_err_el);
+				end_loader();
+				}else{
+				console.log(resp);
+				alert_toast("An error occurred", 'error');
+				end_loader();
+				}
+			}
+			});
+		});
+	});
 })
 </script>
